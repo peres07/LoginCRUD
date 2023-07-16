@@ -10,19 +10,23 @@ export const Profile = () => {
 
     useEffect(() => {
         document.title = 'Profile'
-    })
+        try {
+            const data = jwt_decode(user)
+            setData(data)
+        }
+        catch (err) {
+            logout()
+        }
+    }, [user, logout])
     
-    try {
-        const data = jwt_decode(user)
-        setData(data)
-    }
-    catch (err) {
-        logout()
-    }
 
     const onSubmit = async (event) => {
         event.preventDefault();
         logout()
+    }
+
+    if (!data) {
+        return <></>;
     }
 
     return (

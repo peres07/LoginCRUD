@@ -18,6 +18,7 @@ export function deleteUserCookies() {
 }
 
 export async function LoginRequest(email, password) {
+    const loadingMessage = message.loading('Loading...', 0);
     try {
         const request = await api.post('/login', null, {
             headers: {
@@ -25,19 +26,24 @@ export async function LoginRequest(email, password) {
             },
         });
 
+        loadingMessage();
         message.success('Login done successfully!');
         return request;
     } catch (error) {
+        loadingMessage();
         message.error(error.response.data.error);
     }
 }
 
 export async function registerRequest(email, username, password) {
+    const loadingMessage = message.loading('Loading...', 0);
     try {
         const request = await api.post('/register', qs.stringify({ email, username, password }));
+        loadingMessage();
         message.success('Register done successfully!');
         return request;
     } catch (error) {
+        loadingMessage();
         message.error(error.response.data.error);
     }
 }

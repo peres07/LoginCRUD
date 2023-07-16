@@ -23,9 +23,12 @@ export const Register = () => {
         const password = passwordRef.current.value;
         
         const response = await register(email, username, password);
-        if (response.status === 200) {
-            formRef.current.reset();
-            
+        try {
+            if (response.status === 200) {
+                formRef.current.reset(); 
+            }
+        } catch (error) {
+            // pass
         }
     };
 
