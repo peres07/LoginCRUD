@@ -8,7 +8,7 @@ import {
     registerRequest,
     setUserCookie,
     validateToken,
-} from './util';
+} from '../utils/util';
 import { api } from '../../services/api';
 import { Navigate } from 'react-router-dom';
 
