@@ -1,17 +1,24 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../context/AuthProvider';
 import jwt_decode from "jwt-decode";
 import './styles.css'
 
 export const Profile = () => {
     const { user, logout } = useContext(AuthContext);
+    const [data, setData] = useState(null)
 
     useEffect(() => {
         document.title = 'Profile'
     })
-
-    const data = jwt_decode(user)
+    
+    try {
+        const data = jwt_decode(user)
+        setData(data)
+    }
+    catch (err) {
+        logout()
+    }
 
     const onSubmit = async (event) => {
         event.preventDefault();
