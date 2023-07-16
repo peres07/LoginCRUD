@@ -12,6 +12,8 @@ export const Profile = () => {
         document.title = 'Profile'
         try {
             const data = jwt_decode(user)
+
+            if (data.exp < Date.now() / 1000) return logout()
             setData(data)
         }
         catch (err) {
