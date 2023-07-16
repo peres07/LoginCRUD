@@ -4,6 +4,15 @@ import { useRef } from 'react';
 import { AuthContext } from '../../context/AuthProvider';
 import { Navigate } from 'react-router-dom';
 import './styles.css';
+import {
+    Button,
+    Col,
+    Container,
+    Form,
+    FormControl,
+    FormGroup,
+    Row,
+} from 'react-bootstrap';
 
 export const Login = () => {
     const emailRef = useRef();
@@ -25,41 +34,57 @@ export const Login = () => {
     if (signed) return <Navigate to="/profile" />;
 
     return (
-        <div className="container">
-            <main>
-                <h1>Login</h1>
-                <form className="inside-container" onSubmit={onSubmit}>
-                    <div className="inputs">
-                        <label htmlFor="email">E-Mail:</label>
-                        <input
-                            type="email"
-                            id="email"
-                            ref={emailRef}
-                            required={true}
-                        />
-                        <label htmlFor="password">Password:</label>
-                        <input
-                            type="password"
-                            id="password"
-                            ref={passwordRef}
-                            required={true}
-                        />
-                        <button className="submit" type="submit">
-                            SignIn
-                        </button>
-                    </div>
-                    <div className="or">
-                        <div className="lines"></div>
-                        <span>or</span>
-                        <div className="lines"></div>
-                    </div>
-                    <div className="register-div">
-                        <a href="/register" className="register">
-                            Register Now
-                        </a>
-                    </div>
-                </form>
-            </main>
-        </div>
+        <Container>
+            <Row>
+                <Col className="background">
+                    <h1 className="title">Login</h1>
+                    <Form
+                        className="inside-container d-grid gap-3"
+                        onSubmit={onSubmit}
+                    >
+                        <FormGroup className="inputs d-grid gap-2">
+                            <Col>
+                                <Form.Label htmlFor="email">E-Mail:</Form.Label>
+                                <FormControl
+                                    type="email"
+                                    id="email"
+                                    ref={emailRef}
+                                    required={true}
+                                />
+                            </Col>
+                            <Col>
+                                <Form.Label htmlFor="password">
+                                    Password:
+                                </Form.Label>
+                                <FormControl
+                                    type="password"
+                                    id="password"
+                                    ref={passwordRef}
+                                    required={true}
+                                />
+                            </Col>
+                            <Col className="d-grid">
+                                <Button type="submit" className="mt-3">
+                                    SignIn
+                                </Button>
+                            </Col>
+                        </FormGroup>
+                        <div className="or">
+                            <div className="lines"></div>
+                            <span>or</span>
+                            <div className="lines"></div>
+                        </div>
+                        <Col className="text-center">
+                            <a
+                                href="/register"
+                                className="register-label text-decoration-none"
+                            >
+                                Register Now
+                            </a>
+                        </Col>
+                    </Form>
+                </Col>
+            </Row>
+        </Container>
     );
 };

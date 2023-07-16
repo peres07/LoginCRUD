@@ -51,3 +51,15 @@ export async function register(username, email, password) {
         return false;
     }
 }
+
+export async function deleteAccount(username) {
+    try {
+        const client = new pg.Client(process.env.CONNECTION_STRING);
+        await client.connect();
+        await client.query('DELETE FROM users WHERE username = $1', [username]);
+        await client.end();
+        return true;
+    } catch {
+        return false;
+    }
+}

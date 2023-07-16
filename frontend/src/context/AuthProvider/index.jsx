@@ -2,6 +2,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 import {
     LoginRequest,
+    deleteAccountRequest,
     deleteUserCookies,
     getUserCookie,
     registerRequest,
@@ -31,6 +32,7 @@ export const AuthProvider = ({ children }) => {
             api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
             setUser(response.data.token);
             setUserCookie(response.data.token);
+            return true;
         } catch (error) {
             // pass
         }
@@ -50,6 +52,20 @@ export const AuthProvider = ({ children }) => {
         deleteUserCookies();
     }
 
+    async function deleteAccount(username, password) {
+        try {
+            const response = await authenticate(username, password);
+            if (response === true) {
+                const deleteResponse = await deleteAccountRequest();
+                if (deleteResponse.status === 200) {
+                    logout();
+                }
+            }
+        } catch (error) {
+            // pass
+        }
+    }
+
     async function validate() {
         if ((await validateToken()) === false) {
             logout();
@@ -66,6 +82,7 @@ export const AuthProvider = ({ children }) => {
                 register,
                 logout,
                 validate,
+                deleteAccount,
             }}
         >
             {children}

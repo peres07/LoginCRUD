@@ -51,6 +51,19 @@ export async function registerRequest(email, username, password) {
     }
 }
 
+export async function deleteAccountRequest() {
+    const loadingMessage = message.loading('Loading...', 0);
+    try {
+        const request = await api.delete('/deleteAccount');
+        loadingMessage();
+        message.success('Account deleted successfully!');
+        return request;
+    } catch (error) {
+        loadingMessage();
+        message.error(error.response.data.error);
+    }
+}
+
 export async function validateToken() {
     try {
         await api.post('/validate', null, {
