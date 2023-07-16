@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
             const response = await registerRequest(email, password, username);
             return response;
         } catch (error) {
-             //pass
+            //pass
         }
     }
 
@@ -59,7 +59,14 @@ export const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider
-            value={{ user, signed: !!user, authenticate, register, logout, validate }}
+            value={{
+                user,
+                signed: !!user,
+                authenticate,
+                register,
+                logout,
+                validate,
+            }}
         >
             {children}
         </AuthContext.Provider>

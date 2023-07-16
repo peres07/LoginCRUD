@@ -2,7 +2,7 @@ import jsonwebtoken from 'jsonwebtoken';
 import * as db from '../db/index.js';
 import { registerSchema } from '../validation/registerSchema.js';
 
-export async function login (req, res) {
+export async function login(req, res) {
     const hash = req.headers.authorization.split(' ')[1];
     const [email, password] = atob(hash).split(':');
     const user = await db.findLogin(email, password);
@@ -28,7 +28,7 @@ export async function login (req, res) {
     });
 }
 
-export async function register (req, res) {
+export async function register(req, res) {
     try {
         const { username, email, password } = req.body;
         await registerSchema.validateAsync(req.body);

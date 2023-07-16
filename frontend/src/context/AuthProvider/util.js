@@ -38,7 +38,10 @@ export async function LoginRequest(email, password) {
 export async function registerRequest(email, username, password) {
     const loadingMessage = message.loading('Loading...', 0);
     try {
-        const request = await api.post('/register', qs.stringify({ email, username, password }));
+        const request = await api.post(
+            '/register',
+            qs.stringify({ email, username, password })
+        );
         loadingMessage();
         message.success('Register done successfully!');
         return request;

@@ -31,7 +31,12 @@ export const Login = () => {
                 <form className="inside-container" onSubmit={onSubmit}>
                     <div className="inputs">
                         <label htmlFor="email">E-Mail:</label>
-                        <input type="email" id="email" ref={emailRef} required={true}/>
+                        <input
+                            type="email"
+                            id="email"
+                            ref={emailRef}
+                            required={true}
+                        />
                         <label htmlFor="password">Password:</label>
                         <input
                             type="password"

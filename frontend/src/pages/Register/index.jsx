@@ -1,15 +1,15 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useContext, useEffect, useRef } from "react";
-import { AuthContext } from "../../context/AuthProvider";
-import { Navigate } from "react-router-dom";
-import "./styles.css";
+import React, { useContext, useEffect, useRef } from 'react';
+import { AuthContext } from '../../context/AuthProvider';
+import { Navigate } from 'react-router-dom';
+import './styles.css';
 
 export const Register = () => {
     const formRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
     const usernameRef = useRef();
-    
+
     const { signed, register } = useContext(AuthContext);
 
     useEffect(() => {
@@ -21,11 +21,11 @@ export const Register = () => {
         const email = emailRef.current.value;
         const username = usernameRef.current.value;
         const password = passwordRef.current.value;
-        
+
         const response = await register(email, username, password);
         try {
             if (response.status === 200) {
-                formRef.current.reset(); 
+                formRef.current.reset();
             }
         } catch (error) {
             // pass
@@ -38,12 +38,26 @@ export const Register = () => {
         <div className="container">
             <main>
                 <h1>Register</h1>
-                <form className="inside-container" onSubmit={onSubmit} ref={formRef} >
+                <form
+                    className="inside-container"
+                    onSubmit={onSubmit}
+                    ref={formRef}
+                >
                     <div className="inputs">
                         <label htmlFor="email">E-Mail:</label>
-                        <input type="email" id="email" ref={emailRef} required={true}/>
+                        <input
+                            type="email"
+                            id="email"
+                            ref={emailRef}
+                            required={true}
+                        />
                         <label htmlFor="username">Username:</label>
-                        <input type="text" id="username" ref={usernameRef} required={true}/>
+                        <input
+                            type="text"
+                            id="username"
+                            ref={usernameRef}
+                            required={true}
+                        />
                         <label htmlFor="password">Password:</label>
                         <input
                             type="password"
