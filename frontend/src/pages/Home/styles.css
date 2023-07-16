@@ -1,4 +1,13 @@
-.logout {
+.container {
+    gap: 8px;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.button {
     color: white;
     width: 110px;
     height: 40px;
@@ -9,11 +18,11 @@
     transition: 0.2s;
 }
 
-.logout:hover {
+.button:hover {
     cursor: pointer;
     background-color: #1f243185;
 }
 
 h1 {
-    font-size: 70px;
+    font-size: 65px;
 }

@@ -17,14 +17,16 @@ const emailRegex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]
 app.post('/api/login', async (req, res) => {
     const hash = req.headers.authorization.split(' ')[1];
     const [email, password] = atob(hash).split(':');
-    if (await db.findLogin(email, password)) {
+    const response = await db.findLogin(email, password);
+    if (response) {
         const token = jsonwebtoken.sign(
             {
-                email: email,
+                email: response.email,
+                username: response.username
             },
             process.env.JWT_SECRET,
             {
-                expiresIn: 300,
+                expiresIn: 600,
             }
         );
 

@@ -1,24 +1,26 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useContext, useEffect } from 'react'
 import './styles.css'
-import { AuthContext } from '../../context/AuthProvider';
+import { Link } from 'react-router-dom'
 
 export const Home = () => {
-    const { logout } = useContext(AuthContext);
 
     useEffect(() => {
         document.title = 'Home'
     })
 
-    const onSubmit = async (event) => {
-        event.preventDefault();
-        logout()
-    }
-
     return (
         <div className='container'>
             <h1>Home</h1>
-            <button className="logout cursor-pointer" type="submit" onClick={onSubmit}>Sair</button>
+            <p>This is a public route!</p>
+            <div className='buttons'>
+                <Link to='/login'>
+                    <button className="button" type="button" >Login</button>
+                </Link>
+                <Link to='/register'>
+                    <button className="button" type="button" >Register</button>
+                </Link>
+            </div>
         </div>
     )
 }

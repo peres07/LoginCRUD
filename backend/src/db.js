@@ -9,7 +9,7 @@ export async function findLogin(email, password) {
     const res = await client.query('SELECT * FROM users WHERE email = $1 AND password = $2', [email, password]);
     await client.end();
     if (!res.rows[0]) return false;
-    return true;
+    return res.rows[0];
 }
 
 export async function findUser(username) {

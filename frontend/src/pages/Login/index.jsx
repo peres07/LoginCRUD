@@ -22,7 +22,7 @@ export const Login = () => {
         await authenticate(email, password);
     };
 
-    if (signed) return <Navigate to="/" />;
+    if (signed) return <Navigate to="/profile" />;
 
     return (
         <div className="container">
