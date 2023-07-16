@@ -3,6 +3,9 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
+import userRoutes from './routes/user.js';
+import { validateToken } from './middleware/validateToken.js';
+import { validatePassword } from './middleware/validatePassword.js';
 
 dotenv.config();
 
@@ -12,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const PORT = process.env.PORT || 3333;
 
 app.use('/api', authRoutes);
+app.use('/api', validateToken, validatePassword, userRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);

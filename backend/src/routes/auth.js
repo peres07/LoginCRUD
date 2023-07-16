@@ -1,13 +1,11 @@
 import express from 'express';
-import * as authController from '../controllers/auth.js';
-import * as userController from '../controllers/user.js';
-import { validateToken } from '../middleware/validateToken.js';
+import * as authController from '../controllers/auth/index.js';
+import { validatePassword } from '../middleware/validatePassword.js';
 
 const router = express.Router();
 
 router.post('/login', authController.login);
 router.post('/register', authController.register);
-router.delete('/deleteAccount', validateToken, userController.deleteAccount);
-router.post('/validate', validateToken, (req, res) => res.status(200));
+router.post('/validate', validatePassword, (req, res) => res.status(200));
 
 export default router;
