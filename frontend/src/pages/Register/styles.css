@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+.register-div {
+    display: flex;
+    justify-content: center;
+}
+
+.login {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    transition: 0.1s;
+}
+
+.login:hover {
+    color: rgb(179, 181, 182);
+}
+
+main {
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.178);
+    background-color: #161923;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 55vh;
+    gap: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.inside-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+main .inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+main h1 {
+    color: #8880fe;
+    font-size: 50px;
+}
+
+.or {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.or .lines {
+    background-color: grey;
+    height: 1px;
+    width: 100px;
+}
+
+.inputs input,
+button {
+    color: white;
+    height: 35px;
+    background-color: #1f2431;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+}
+
+.inputs .submit {
+    height: 50px;
+    transition: 0.3s;
+    margin-top: 12px;
+}
+
+.inputs .submit:hover {
+    cursor: pointer;
+    background-color: #1f243185;
+}
+
+@media (max-width: 1160px) {
+    main {
+        background-color: transparent;
+        box-shadow: none;
+    }
+
+    .inputs .submit {
+        font-size: 15px;
+    }
+}
