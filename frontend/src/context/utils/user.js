@@ -1,6 +1,7 @@
 import qs from 'qs';
 import message from 'antd/lib/message';
 import { api } from '../../services/api';
+import { getUserCookie } from './auth';
 
 export async function deleteAccountRequest(password) {
     const loadingMessage = message.loading('Loading...', 0);
@@ -29,6 +30,7 @@ export async function changeUsernameRequest(username, password) {
             {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
+                    Authorization: 'Bearer ' + getUserCookie(),
                 },
             }
         );
@@ -50,6 +52,7 @@ export async function changeEmailRequest(email, password) {
             {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
+                    Authorization: 'Bearer ' + getUserCookie(),
                 },
             }
         );
@@ -79,6 +82,7 @@ export async function changePasswordRequest(
             {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
+                    Authorization: 'Bearer ' + getUserCookie(),
                 },
             }
         );
