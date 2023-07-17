@@ -17,6 +17,18 @@ export function deleteUserCookies() {
     Cookies.remove('access-token');
 }
 
+export async function validateToken() {
+    try {
+        await api.post('/validate', null, {
+            headers: { Authorization: 'Bearer ' + getUserCookie() },
+        });
+        return true;
+    } catch (error) {
+        message.error(error.response.data.error);
+        return false;
+    }
+}
+
 export async function LoginRequest(email, password) {
     const loadingMessage = message.loading('Loading...', 0);
     try {
@@ -48,30 +60,5 @@ export async function registerRequest(email, username, password) {
     } catch (error) {
         loadingMessage();
         message.error(error.response.data.error);
-    }
-}
-
-export async function deleteAccountRequest() {
-    const loadingMessage = message.loading('Loading...', 0);
-    try {
-        const request = await api.delete('/deleteAccount');
-        loadingMessage();
-        message.success('Account deleted successfully!');
-        return request;
-    } catch (error) {
-        loadingMessage();
-        message.error(error.response.data.error);
-    }
-}
-
-export async function validateToken() {
-    try {
-        await api.post('/validate', null, {
-            headers: { Authorization: 'Bearer ' + getUserCookie() },
-        });
-        return true;
-    } catch (error) {
-        message.error(error.response.data.error);
-        return false;
     }
 }

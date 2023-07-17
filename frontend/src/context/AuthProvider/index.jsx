@@ -1,20 +1,25 @@
 // eslint-disable-next-line no-unused-vars
 import React, { createContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import {
     LoginRequest,
-    deleteAccountRequest,
+    registerRequest,
     deleteUserCookies,
     getUserCookie,
-    registerRequest,
     setUserCookie,
     validateToken,
-} from '../utils/util';
+} from '../utils/auth';
+import {
+    deleteAccountRequest,
+    changeUsernameRequest,
+    changeEmailRequest,
+    changePasswordRequest,
+} from '../utils/user';
 import { api } from '../../services/api';
 import { Navigate } from 'react-router-dom';
 
 export const AuthContext = createContext();
 
-// eslint-disable-next-line react/prop-types
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
 
@@ -52,24 +57,62 @@ export const AuthProvider = ({ children }) => {
         deleteUserCookies();
     }
 
-    async function deleteAccount(username, password) {
+    async function validate() {
+        if ((await validateToken()) === false) {
+            logout();
+            return <Navigate to="/login" />;
+        }
+        return true;
+    }
+
+    async function deleteAccount(password) {
         try {
-            const response = await authenticate(username, password);
-            if (response === true) {
-                const deleteResponse = await deleteAccountRequest();
-                if (deleteResponse.status === 200) {
-                    logout();
-                }
+            const deleteResponse = await deleteAccountRequest(password);
+            if (deleteResponse.status === 200) {
+                logout();
             }
         } catch (error) {
             // pass
         }
     }
 
-    async function validate() {
-        if ((await validateToken()) === false) {
-            logout();
-            return <Navigate to="/login" />;
+    async function changeUsername(username, password) {
+        try {
+            const changeResponse = await changeUsernameRequest(
+                username,
+                password
+            );
+            if (changeResponse.status === 200) {
+                logout();
+            }
+        } catch (error) {
+            // pass
+        }
+    }
+
+    async function changeEmail(username, password) {
+        try {
+            const changeResponse = await changeEmailRequest(username, password);
+            if (changeResponse.status === 200) {
+                logout();
+            }
+        } catch (error) {
+            // pass
+        }
+    }
+
+    async function changePassword(newPassword, confirmNewPassword, password) {
+        try {
+            const changeResponse = await changePasswordRequest(
+                newPassword,
+                confirmNewPassword,
+                password
+            );
+            if (changeResponse.status === 200) {
+                logout();
+            }
+        } catch {
+            // pass
         }
     }
 
@@ -83,9 +126,16 @@ export const AuthProvider = ({ children }) => {
                 logout,
                 validate,
                 deleteAccount,
+                changeUsername,
+                changeEmail,
+                changePassword,
             }}
         >
             {children}
         </AuthContext.Provider>
     );
+};
+
+AuthProvider.propTypes = {
+    children: PropTypes.node.isRequired,
 };

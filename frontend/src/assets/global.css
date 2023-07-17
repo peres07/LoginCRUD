@@ -9,6 +9,24 @@
     z-index: 9999 !important;
 }
 
+.dark-modal .modal-content {
+    background-color: #161923;
+    color: rgb(255, 255, 255);
+}
+
+.dark-modal .btn-close {
+    --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e")
+}
+
+.dark-modal .form-control {
+    color: white;
+    height: 35px;
+    background-color: #1f2431;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+}
+
 body {
     background: #1B2029;
     color: white;
@@ -55,15 +73,4 @@ body {
     height: 50px;
     transition: 0.3s;
     margin-top: 12px;
-}
-
-@media (max-width: 1160px) {
-    .backgroud {
-        background-color: transparent;
-        box-shadow: none;
-    }
-
-    .inputs .submit {
-        font-size: 15px;
-    }
 }
