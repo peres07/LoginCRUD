@@ -23,7 +23,6 @@ Este projeto é uma página de login com um CRUD (Create, Read, Update, Delete) 
 ### Pré-requisitos
 
 - Ter instalado o Node.js e o PostgreSQL na sua máquina
-- Ter criado um banco de dados chamado `login_project` no PostgreSQL
 
 ### Passos
 
