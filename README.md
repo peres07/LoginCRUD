@@ -51,6 +51,11 @@ CREATE TABLE users (
 
 ## Screenshots
 
-<img src="/screenshots/login-page.jpeg" alt="Página de login" width="371" height="250">
-<img src="/screenshots/register-page.jpeg" alt="Página de registro" width="371" height="250">
-<img src="/screenshots/profile-page.jpeg" alt="Página do perfil" width="800" height="400">
+| Página de login | Página de registro |
+|:---:|:---:|
+| ![](/screenshots/login-page.jpeg) | ![](/screenshots/register-page.jpeg) |
+
+| Página do perfil |
+|:---:|
+| ![](/screenshots/profile-page.jpeg) |
+
