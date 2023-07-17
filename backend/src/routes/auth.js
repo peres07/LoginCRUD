@@ -6,6 +6,8 @@ const router = express.Router();
 
 router.post('/login', authController.login);
 router.post('/register', authController.register);
-router.post('/validate', validateToken, (req, res) => res.status(200));
+router.post('/validate', validateToken, (req, res) => {
+    return res.sendStatus(200);
+});
 
 export default router;
