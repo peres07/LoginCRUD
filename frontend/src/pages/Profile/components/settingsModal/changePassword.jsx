@@ -36,7 +36,7 @@ export const ChangePasswordModal = ({ showPassword, handleClosePassword }) => {
                     <Form.Group controlId="formBasicUsername">
                         <Form.Label>New Password:</Form.Label>
                         <Form.Control
-                            type="text"
+                            type="password"
                             placeholder="Enter new password"
                             ref={newPasswordRef}
                             required="true"
@@ -45,7 +45,7 @@ export const ChangePasswordModal = ({ showPassword, handleClosePassword }) => {
                             Retype New Password:
                         </Form.Label>
                         <Form.Control
-                            type="text"
+                            type="password"
                             placeholder="Retype new password"
                             ref={confirmNewPasswordRef}
                             required="true"
