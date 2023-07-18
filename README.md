@@ -2,6 +2,8 @@
 
 Este projeto é uma página de login com um CRUD (Create, Read, Update, Delete) com React para o frontend, e Express com Node.js para o backend. O backend faz uma conexão com o banco de dados PostgreSQL, podendo registrar um usuário, logar um usuário, editar email, senha e username.
 
+Você pode acessar a página clicando [aqui](https://login-crud-frontend.vercel.app/)
+
 ## Tecnologias utilizadas
 
 - React: biblioteca JavaScript para criar interfaces de usuário
@@ -23,7 +25,6 @@ Este projeto é uma página de login com um CRUD (Create, Read, Update, Delete) 
 ### Pré-requisitos
 
 - Ter instalado o Node.js e o PostgreSQL na sua máquina
-- Ter criado um banco de dados chamado `login_project` no PostgreSQL
 
 ### Passos
 
@@ -58,6 +59,11 @@ CREATE TABLE confirmation_codes (
 
 ## Screenshots
 
-<img src="/screenshots/login-page.jpeg" alt="Página de login" width="371" height="250">
-<img src="/screenshots/register-page.jpeg" alt="Página de registro" width="371" height="250">
-<img src="/screenshots/profile-page.jpeg" alt="Página do perfil" width="800" height="400">
+| Página de login | Página de registro |
+|:---:|:---:|
+| ![](/screenshots/login-page.jpeg) | ![](/screenshots/register-page.jpeg) |
+
+| Página do perfil |
+|:---:|
+| ![](/screenshots/profile-page.jpeg) |
+
