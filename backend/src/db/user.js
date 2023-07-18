@@ -2,7 +2,7 @@ import { query } from './utils/query.js';
 
 export async function deleteAccount(email) {
     try {
-        query('DELETE FROM users WHERE email = $1', [email]);
+        await query('DELETE FROM users WHERE email = $1', [email]);
 
         return true;
     } catch {
@@ -12,7 +12,7 @@ export async function deleteAccount(email) {
 
 export async function changeUsername(old_username, new_username) {
     try {
-        query('UPDATE users SET username = $1 WHERE username = $2', [
+        await query('UPDATE users SET username = $1 WHERE username = $2', [
             new_username,
             old_username,
         ]);
@@ -25,7 +25,7 @@ export async function changeUsername(old_username, new_username) {
 
 export async function changeEmail(old_email, new_email) {
     try {
-        query('UPDATE users SET email = $1 WHERE email = $2', [
+        await query('UPDATE users SET email = $1 WHERE email = $2', [
             new_email,
             old_email,
         ]);
@@ -38,7 +38,7 @@ export async function changeEmail(old_email, new_email) {
 
 export async function changePassword(username, new_password) {
     try {
-        query('UPDATE users SET password = $1 WHERE username = $2', [
+        await query('UPDATE users SET password = $1 WHERE username = $2', [
             new_password,
             username,
         ]);

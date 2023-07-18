@@ -38,6 +38,12 @@ CREATE TABLE users (
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL
 );
+CREATE TABLE confirmation_codes (
+    email TEXT PRIMARY KEY,
+    code TEXT NOT NULL,
+    expiration TIMESTAMP NOT NULL
+    generated_at TIMESTAMP NOT NULL
+);
 ```
 5. Inicie o servidor com o comando `npm run dev` na pasta `backend`
 6. Edite o arquivo `frontend/src/services/api.js` e altere o valor da variável `baseURL` para o endereço do seu servidor. Exemplo: `http://localhost:3333`

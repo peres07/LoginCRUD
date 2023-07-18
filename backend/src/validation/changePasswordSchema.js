@@ -10,4 +10,5 @@ export const changePasswordSchema = joi.object({
             'any.only': 'Passwords do not match.',
         }),
     password: joi.string().required(),
+    code: joi.string().required(),
 });

@@ -7,6 +7,9 @@ export async function query(query, values) {
     const client = new pg.Client(process.env.CONNECTION_STRING);
     await client.connect();
     const res = await client.query(query, values);
+    client.on('error', (err) => {
+        console.error('PostgreSQL client error:', err);
+    });
     await client.end();
     return res;
 }

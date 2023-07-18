@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.post('/login', authController.login);
 router.post('/register', authController.register);
+router.post('/sendCode', authController.sendCode);
 router.post('/validate', validateToken, (req, res) => {
     return res.sendStatus(200);
 });

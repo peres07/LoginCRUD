@@ -13,3 +13,9 @@ export async function findEmail(email) {
     if (!res.rows[0]) return false;
     return true;
 }
+
+export async function findCode(email) {
+    const res = await query('SELECT * FROM confirmation_codes WHERE email = $1', [email]);
+    if (!res.rows[0]) return false;
+    return res.rows[0];
+}
