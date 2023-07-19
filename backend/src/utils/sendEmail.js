@@ -17,16 +17,8 @@ export const sendEmail = async (options) => {
             subject: options.subject,
             html: options.text,
         };
-
-        await new Promise((resolve, reject) => {
-            transporter.sendMail(mailOptions, (err, info) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(info);
-                }
-            });
-        });
+    
+        await transporter.sendMail(mailOptions);
         return true;
     } catch (err) {
         return false;
