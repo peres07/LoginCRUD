@@ -9,8 +9,6 @@ import {
     Col,
     Container,
     Form,
-    FormControl,
-    FormGroup,
     Row,
 } from 'react-bootstrap';
 
@@ -42,10 +40,10 @@ export const Login = () => {
                         className="inside-container d-grid gap-3"
                         onSubmit={onSubmit}
                     >
-                        <FormGroup className="inputs d-grid gap-2">
+                        <Form.Group className="inputs d-grid gap-2">
                             <Col>
                                 <Form.Label htmlFor="email">E-Mail:</Form.Label>
-                                <FormControl
+                                <Form.Control
                                     type="email"
                                     id="email"
                                     ref={emailRef}
@@ -56,7 +54,7 @@ export const Login = () => {
                                 <Form.Label htmlFor="password">
                                     Password:
                                 </Form.Label>
-                                <FormControl
+                                <Form.Control
                                     type="password"
                                     id="password"
                                     ref={passwordRef}
@@ -68,7 +66,7 @@ export const Login = () => {
                                     SignIn
                                 </Button>
                             </Col>
-                        </FormGroup>
+                        </Form.Group>
                         <div className="or">
                             <div className="lines"></div>
                             <span>or</span>

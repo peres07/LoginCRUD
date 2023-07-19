@@ -1,6 +1,6 @@
 import { useContext, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Form, FormGroup, Modal, ModalHeader } from 'react-bootstrap';
+import { Button, Form, Modal, ModalHeader } from 'react-bootstrap';
 import { AuthContext } from '../../../../context/AuthProvider';
 
 export const DeleteAccountModal = ({
@@ -24,7 +24,7 @@ export const DeleteAccountModal = ({
             <ModalHeader closeButton>Confirm Delete</ModalHeader>
             <Modal.Body>
                 <Form onSubmit={deleteAccountButton}>
-                    <FormGroup controlId="formBasicPassword">
+                    <Form.Group controlId="formBasicPassword">
                         <p className="mb-2">
                             Por favor, digite sua senha para confirmar a
                             exclusão.
@@ -35,7 +35,7 @@ export const DeleteAccountModal = ({
                             ref={passwordRef}
                             required="true"
                         />
-                    </FormGroup>
+                    </Form.Group>
                     <Button variant="danger" type="submit" className="mt-3">
                         Confirm Delete
                     </Button>

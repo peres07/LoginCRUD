@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useContext, useRef } from 'react';
 import { AuthContext } from '../../../../context/AuthProvider';
+import { VerificationCodeSender } from '../../../components/VerificationCodeSender';
 
 export const ChangePasswordModal = ({ showPassword, handleClosePassword }) => {
     const { changePassword } = useContext(AuthContext);
@@ -10,13 +11,15 @@ export const ChangePasswordModal = ({ showPassword, handleClosePassword }) => {
     const newPasswordRef = useRef();
     const confirmNewPasswordRef = useRef();
     const passwordRef = useRef();
+    const codeRef = useRef();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         await changePassword(
             newPasswordRef.current.value,
             confirmNewPasswordRef.current.value,
-            passwordRef.current.value
+            passwordRef.current.value,
+            codeRef.current.value
         );
     };
 
@@ -33,33 +36,34 @@ export const ChangePasswordModal = ({ showPassword, handleClosePassword }) => {
             </ModalHeader>
             <ModalBody>
                 <Form onSubmit={handleSubmit}>
-                    <Form.Group controlId="formBasicUsername">
+                    <Form.Group controlId="formBasicNewPassword">
                         <Form.Label>New Password:</Form.Label>
                         <Form.Control
                             type="password"
                             placeholder="Enter new password"
                             ref={newPasswordRef}
-                            required="true"
+                            required={true}
                         />
-                        <Form.Label className="mt-2">
-                            Retype New Password:
-                        </Form.Label>
+                    </Form.Group>
+                    <Form.Group controlId="formBasicConfirmNewPassword">
+                        <Form.Label>Retype New Password:</Form.Label>
                         <Form.Control
                             type="password"
                             placeholder="Retype new password"
                             ref={confirmNewPasswordRef}
-                            required="true"
+                            required={true}
                         />
-                        <Form.Label className="mt-2">
-                            Current Password:
-                        </Form.Label>
+                    </Form.Group>
+                    <Form.Group controlId="formBasicCurrentPassword">
+                        <Form.Label>Current Password:</Form.Label>
                         <Form.Control
                             type="password"
                             placeholder="Enter current password"
                             ref={passwordRef}
-                            required="true"
+                            required={true}
                         />
                     </Form.Group>
+                    <VerificationCodeSender codeRef={codeRef} />
                     <Button variant="primary" type="submit" className="mt-4">
                         Submit
                     </Button>

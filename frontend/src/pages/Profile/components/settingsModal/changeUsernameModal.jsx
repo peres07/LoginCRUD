@@ -3,18 +3,21 @@ import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useContext, useRef } from 'react';
 import { AuthContext } from '../../../../context/AuthProvider';
+import { VerificationCodeSender } from '../../../components/VerificationCodeSender';
 
 export const ChangeUsernameModal = ({ showUsername, handleCloseUsername }) => {
     const { changeUsername } = useContext(AuthContext);
 
     const usernameRef = useRef();
     const passwordRef = useRef();
+    const codeRef = useRef();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         await changeUsername(
             usernameRef.current.value,
-            passwordRef.current.value
+            passwordRef.current.value,
+            codeRef.current.value
         );
     };
 
@@ -47,6 +50,7 @@ export const ChangeUsernameModal = ({ showUsername, handleCloseUsername }) => {
                             required="true"
                         />
                     </Form.Group>
+                    <VerificationCodeSender codeRef={codeRef} />
                     <Button variant="primary" type="submit" className="mt-4">
                         Submit
                     </Button>

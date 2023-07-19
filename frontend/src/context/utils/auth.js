@@ -47,17 +47,35 @@ export async function LoginRequest(email, password) {
     }
 }
 
-export async function registerRequest(email, username, password) {
+export async function registerRequest(email, username, password, code) {
     const loadingMessage = message.loading('Loading...', 0);
     try {
         const request = await api.post(
             '/register',
-            qs.stringify({ email, username, password })
+            qs.stringify({ email, username, password, code })
         );
         loadingMessage();
         message.success('Register done successfully!');
         return request;
     } catch (error) {
+        loadingMessage();
+        message.error(error.response.data.error);
+    }
+}
+
+export async function sendCodeRequest(email) {
+    const loadingMessage = message.loading('Loading...', 0);
+    try {
+        const request = await api.post('/sendCode', qs.stringify({ email }), {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        });
+        loadingMessage();
+        message.success('Code sent successfully!');
+        return request;
+    } catch (error) {
+        console.log(error)
         loadingMessage();
         message.error(error.response.data.error);
     }

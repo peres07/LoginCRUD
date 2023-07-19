@@ -3,11 +3,11 @@ import message from 'antd/lib/message';
 import { api } from '../../services/api';
 import { getUserCookie } from './auth';
 
-export async function deleteAccountRequest(password) {
+export async function deleteAccountRequest(password, code) {
     const loadingMessage = message.loading('Loading...', 0);
     try {
         const request = await api.delete('/deleteAccount', {
-            data: qs.stringify({ password }),
+            data: qs.stringify({ password, code }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
@@ -21,12 +21,12 @@ export async function deleteAccountRequest(password) {
     }
 }
 
-export async function changeUsernameRequest(username, password) {
+export async function changeUsernameRequest(username, password, code) {
     const loadingMessage = message.loading('Loading...', 0);
     try {
         const request = await api.patch(
             '/changeUsername',
-            qs.stringify({ new_username: username, password }),
+            qs.stringify({ new_username: username, password, code }),
             {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -43,12 +43,12 @@ export async function changeUsernameRequest(username, password) {
     }
 }
 
-export async function changeEmailRequest(email, password) {
+export async function changeEmailRequest(email, password, code) {
     const loadingMessage = message.loading('Loading...', 0);
     try {
         const request = await api.patch(
             '/changeEmail',
-            qs.stringify({ new_email: email, password }),
+            qs.stringify({ new_email: email, password, code }),
             {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -68,7 +68,8 @@ export async function changeEmailRequest(email, password) {
 export async function changePasswordRequest(
     newPassword,
     confirmNewPassword,
-    password
+    password,
+    code
 ) {
     const loadingMessage = message.loading('Loading...', 0);
     try {
@@ -78,6 +79,7 @@ export async function changePasswordRequest(
                 new_password: newPassword,
                 confirm_password: confirmNewPassword,
                 password,
+                code,
             }),
             {
                 headers: {

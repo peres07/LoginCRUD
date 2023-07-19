@@ -5,6 +5,13 @@
     font-family: "Poppins", sans-serif;
 }
 
+.sendCode-label {
+    cursor: pointer;
+    font-size: 12px;
+    text-decoration: none;
+    transition: 0.1s;
+}
+
 .ant-message {
     z-index: 9999 !important;
 }

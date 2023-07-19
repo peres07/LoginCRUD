@@ -8,6 +8,7 @@ import {
     getUserCookie,
     setUserCookie,
     validateToken,
+    sendCodeRequest,
 } from '../utils/auth';
 import {
     deleteAccountRequest,
@@ -43,9 +44,14 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    async function register(email, password, username) {
+    async function register(email, username, password, code) {
         try {
-            const response = await registerRequest(email, password, username);
+            const response = await registerRequest(
+                email,
+                username,
+                password,
+                code
+            );
             return response;
         } catch (error) {
             //pass
@@ -65,9 +71,18 @@ export const AuthProvider = ({ children }) => {
         return true;
     }
 
-    async function deleteAccount(password) {
+    async function sendCode(email) {
         try {
-            const deleteResponse = await deleteAccountRequest(password);
+            const response = await sendCodeRequest(email);
+            return response;
+        } catch (error) {
+            // pass
+        }
+    }
+
+    async function deleteAccount(password, code) {
+        try {
+            const deleteResponse = await deleteAccountRequest(password, code);
             if (deleteResponse.status === 200) {
                 logout();
             }
@@ -76,11 +91,12 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    async function changeUsername(username, password) {
+    async function changeUsername(username, password, code) {
         try {
             const changeResponse = await changeUsernameRequest(
                 username,
-                password
+                password,
+                code
             );
             if (changeResponse.status === 200) {
                 logout();
@@ -90,9 +106,13 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    async function changeEmail(username, password) {
+    async function changeEmail(username, password, code) {
         try {
-            const changeResponse = await changeEmailRequest(username, password);
+            const changeResponse = await changeEmailRequest(
+                username,
+                password,
+                code
+            );
             if (changeResponse.status === 200) {
                 logout();
             }
@@ -101,12 +121,18 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    async function changePassword(newPassword, confirmNewPassword, password) {
+    async function changePassword(
+        newPassword,
+        confirmNewPassword,
+        password,
+        code
+    ) {
         try {
             const changeResponse = await changePasswordRequest(
                 newPassword,
                 confirmNewPassword,
-                password
+                password,
+                code
             );
             if (changeResponse.status === 200) {
                 logout();
@@ -129,6 +155,7 @@ export const AuthProvider = ({ children }) => {
                 changeUsername,
                 changeEmail,
                 changePassword,
+                sendCode,
             }}
         >
             {children}

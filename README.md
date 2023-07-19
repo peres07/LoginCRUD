@@ -18,7 +18,7 @@ Você pode acessar a página clicando [aqui](https://login-crud-frontend.vercel.
 
 - [x] Realizar um CRUD (Login, registro e gerenciamento de usuário)
 - [x] Autenticação e validação do JWT para bloquear rotas
-- [ ] Validação por email ao criar uma conta ou editar dados
+- [x] Validação por email ao criar uma conta ou editar dados
 
 ## Como executar o projeto
 
@@ -43,7 +43,7 @@ CREATE TABLE confirmation_codes (
     email TEXT PRIMARY KEY,
     code TEXT NOT NULL,
     expiration TIMESTAMP NOT NULL
-    generated_at TIMESTAMP NOT NULL
+    generated_at BIGINT NOT NULL
 );
 ```
 5. Inicie o servidor com o comando `npm run dev` na pasta `backend`

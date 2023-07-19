@@ -3,16 +3,18 @@ import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useContext, useRef } from 'react';
 import { AuthContext } from '../../../../context/AuthProvider';
+import { VerificationCodeSender } from '../../../components/VerificationCodeSender';
 
 export const ChangeEmailModal = ({ showEmail, handleCloseEmail }) => {
     const { changeEmail } = useContext(AuthContext);
 
     const emailRef = useRef();
     const passwordRef = useRef();
+    const codeRef = useRef();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        await changeEmail(emailRef.current.value, passwordRef.current.value);
+        await changeEmail(emailRef.current.value, passwordRef.current.value, codeRef.current.value);
     };
 
     return (
@@ -32,16 +34,19 @@ export const ChangeEmailModal = ({ showEmail, handleCloseEmail }) => {
                             type="text"
                             placeholder="Enter new email"
                             ref={emailRef}
-                            required="true"
+                            required={true}
                         />
+                    </Form.Group>
+                    <Form.Group controlId="formBasicPassword" className='mb-6'>
                         <Form.Label className="mt-2">Password:</Form.Label>
                         <Form.Control
                             type="password"
                             placeholder="Enter password"
                             ref={passwordRef}
-                            required="true"
+                            required={true}
                         />
                     </Form.Group>
+                    <VerificationCodeSender codeRef={codeRef} />
                     <Button variant="primary" type="submit" className="mt-4">
                         Submit
                     </Button>

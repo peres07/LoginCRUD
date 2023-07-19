@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export const api = axios.create({
-    baseURL: 'https://login-crud-vert.vercel.app/api/',
+    baseURL: 'https://logincrud-backend.onrender.com/api/',
 });
