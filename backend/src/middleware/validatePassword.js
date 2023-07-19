@@ -12,6 +12,7 @@ export async function validatePassword(req, res, next) {
         if (!user) return res.status(401).json({ error: 'Invalid password.' });
         return next();
     } catch (err) {
+        console.log(err);
         if (err.isJoi) {
             return res.status(400).json({ error: err.details[0].message });
         }

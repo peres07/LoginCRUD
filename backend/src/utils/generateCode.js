@@ -10,14 +10,24 @@ export async function generateCode(email) {
             Math.floor(Math.random() * characters.length)
         );
     }
+    const expiration = new Date(
+        new Date().getTime() + 60 * 60 * 1000
+    ).toISOString();
+    const now = new Date(Date.now());
     const code = await db.findCode(email);
     if (code) {
+        let { generated_at } = code;
+        generated_at = parseInt(generated_at);
+        const generated_at_date = new Date(generated_at + 3 * 60 * 1000);
+
+        if (generated_at_date > now) {
+            return false;
+        }
         await db.deleteCode(email);
     }
-    const expiration = new Date(new Date().getTime() + 60 * 60 * 1000).toISOString();
-    const generated_at = new Date(code.generated_at).getTime();
-    const now = new Date(new Date()).getTime();
-    if (generated_at + 180 * 1000 > now) return false;
-    if (await db.saveCode(email, result, expiration, new Date(now).toISOString())) return result;
+    if (await db.saveCode(email, result, expiration, now.getTime())) {
+        return result;
+    }
+
     return false;
 }

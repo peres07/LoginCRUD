@@ -17,9 +17,10 @@ export async function register(req, res) {
         await db.register(username, email, password);
         return res.status(200).json({ message: 'User created successfully.' });
     } catch (err) {
+        console.log(err);
         if (err.isJoi) {
             return res.status(400).json({ error: err.details[0].message });
         }
-        res.status(500).json({ error: err });
+        return res.status(500).json({ error: err });
     }
 }

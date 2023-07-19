@@ -14,6 +14,7 @@ export async function validateCode(req, email) {
         await db.deleteCode(email);
         return true;
     } catch (err) {
+        console.log(err);
         return false;
     }
 }

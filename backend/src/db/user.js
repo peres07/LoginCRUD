@@ -18,7 +18,8 @@ export async function changeUsername(old_username, new_username) {
         ]);
 
         return true;
-    } catch {
+    }  catch (err) {
+        console.log(err);
         return false;
     }
 }
@@ -31,7 +32,8 @@ export async function changeEmail(old_email, new_email) {
         ]);
 
         return true;
-    } catch {
+    }  catch (err) {
+        console.log(err);
         return false;
     }
 }
@@ -44,7 +46,8 @@ export async function changePassword(username, new_password) {
         ]);
 
         return true;
-    } catch {
+    }  catch (err) {
+        console.log(err);
         return false;
     }
 }

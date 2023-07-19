@@ -16,7 +16,8 @@ export async function register(username, email, password) {
             [username, email, password]
         );
         return true;
-    } catch {
+    }  catch (err) {
+        console.log(err);
         return false;
     }
 }
@@ -30,6 +31,7 @@ export async function saveCode(email, code, expiration, generated_at) {
 
         return true;
     } catch (err) {
+        console.log(err);
         return false;
     }
 }
@@ -38,7 +40,8 @@ export async function deleteCode(email) {
     try {
         await query('DELETE FROM confirmation_codes WHERE email = $1', [email]);
         return true;
-    } catch (err) {
+    }  catch (err) {
+        console.log(err);
         return false;
     }
 }

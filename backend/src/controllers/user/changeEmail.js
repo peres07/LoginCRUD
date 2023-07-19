@@ -23,6 +23,7 @@ export async function changeEmail(req, res) {
         await db.changeEmail(old_email, new_email);
         return res.status(200).json({ message: 'Email changed successfully.' });
     } catch (err) {
+        console.log(err);
         if (err.isJoi) {
             return res.status(400).json({ error: err.details[0].message });
         }

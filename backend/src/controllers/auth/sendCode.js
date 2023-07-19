@@ -12,12 +12,9 @@ export async function sendCode(req, res) {
                 if (err) throw new Error('Token invalid or expired.');
             });
             email = jwt.decode(token).email;
-            console.log(email);
         } catch {
             await sendCodeSchema.validateAsync(req.body);
             email = req.body.email;
-            console.log(email);
-            
         }
 
 
@@ -36,6 +33,7 @@ export async function sendCode(req, res) {
             .status(500)
             .json({ error: 'Error sending code, wait a few minutes.' });
     } catch (err) {
+        console.log(err);
         if (err.isJoi) {
             return res.status(400).json({ error: err.details[0].message });
         }

@@ -25,6 +25,7 @@ export async function changeUsername(req, res) {
             .status(200)
             .json({ message: 'Username changed successfully.' });
     } catch (err) {
+        console.log(err);
         if (err.isJoi) {
             return res.status(400).json({ error: err.details[0].message });
         }

@@ -12,6 +12,7 @@ export async function deleteAccount(req, res) {
         await db.deleteAccount(email);
         return res.status(200).json({ message: 'User deleted successfully.' });
     } catch (err) {
+        console.log(err);
         res.status(500).json({ error: err });
     }
 }
