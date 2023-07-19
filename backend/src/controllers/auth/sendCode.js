@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { generateCode } from '../../utils/generateCode.js';
 import { sendEmail } from '../../utils/sendEmail.js';
+import { sendCodeSchema } from '../../validation/sendCodeSchama.js';
 
 export async function sendCode(req, res) {
     try {
@@ -12,8 +13,11 @@ export async function sendCode(req, res) {
             });
             email = jwt.decode(token).code;
         } catch {
+            await sendCodeSchema.validateAsync(req.body);
             email = req.body.email;
         }
+
+
         const code = await generateCode(email);
         if (
             code &&
@@ -25,10 +29,14 @@ export async function sendCode(req, res) {
         )
             return res.status(200).json({ message: 'Code sent successfully.' });
 
-        return res.status(500).json({ error: 'Error sending code, wait a few minutes.' });
+        return res
+            .status(500)
+            .json({ error: 'Error sending code, wait a few minutes.' });
     } catch (err) {
-        console.log(err);
-        if (err.message === 'Token invalid or expired.') {
+        if (err.isJoi) {
+            return res.status(400).json({ error: err.details[0].message });
+        }
+        else if (err.message === 'Token invalid or expired.') {
             return res.status(401).json({ error: err.message });
         } else {
             return res.status(500).json({ error: err });
