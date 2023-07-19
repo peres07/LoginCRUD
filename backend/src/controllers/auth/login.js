@@ -13,7 +13,7 @@ export async function login(req, res) {
             },
             process.env.JWT_SECRET,
             {
-                expiresIn: 600,
+                expiresIn: '7d',
             }
         );
 
