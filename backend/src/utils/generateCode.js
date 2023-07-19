@@ -17,7 +17,7 @@ export async function generateCode(email) {
     const expiration = new Date(new Date().getTime() + 60 * 60 * 1000).toISOString();
     const generated_at = new Date(code.generated_at).getTime();
     const now = new Date(new Date()).getTime();
-    if (generated_at + 180 * 1000 < now) return false;
+    if (generated_at + 180 * 1000 > now) return false;
     if (await db.saveCode(email, result, expiration, new Date(now).toISOString())) return result;
     return false;
 }
