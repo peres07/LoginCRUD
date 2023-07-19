@@ -11,10 +11,13 @@ export async function sendCode(req, res) {
             jwt.verify(token, process.env.JWT_SECRET, (err) => {
                 if (err) throw new Error('Token invalid or expired.');
             });
-            email = jwt.decode(token).code;
+            email = jwt.decode(token).email;
+            console.log(email);
         } catch {
             await sendCodeSchema.validateAsync(req.body);
             email = req.body.email;
+            console.log(email);
+            
         }
 
 
