@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import * as db from '../../db/index.js';
+import { deleteAccount as dbDeleteAccount} from '../../db/index.js';
 import { validateCode } from '../../utils/validateCode.js';
 
 export async function deleteAccount(req, res) {
@@ -9,7 +9,7 @@ export async function deleteAccount(req, res) {
         if (!(await validateCode(req, email))) {
             return res.status(401).json({ error: 'Invalid code.' });
         }
-        await db.deleteAccount(email);
+        await dbDeleteAccount(email);
         return res.status(200).json({ message: 'User deleted successfully.' });
     } catch (err) {
         console.log(err);

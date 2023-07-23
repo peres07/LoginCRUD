@@ -1,4 +1,4 @@
-import * as db from '../db/index.js';
+import { findCode, deleteCode, saveCode} from '../db/index.js';
 
 export async function generateCode(email) {
     const length = 6;
@@ -14,7 +14,7 @@ export async function generateCode(email) {
         new Date().getTime() + 60 * 60 * 1000
     ).toISOString();
     const now = new Date(Date.now());
-    const code = await db.findCode(email);
+    const code = await findCode(email);
     if (code) {
         let { generated_at } = code;
         generated_at = parseInt(generated_at);
@@ -23,9 +23,9 @@ export async function generateCode(email) {
         if (generated_at_date > now) {
             return false;
         }
-        await db.deleteCode(email);
+        await deleteCode(email);
     }
-    if (await db.saveCode(email, result, expiration, now.getTime())) {
+    if (await saveCode(email, result, expiration, now.getTime())) {
         return result;
     }
 

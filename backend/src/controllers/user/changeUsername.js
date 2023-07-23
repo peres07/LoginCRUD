@@ -1,4 +1,4 @@
-import * as db from '../../db/index.js';
+import { findUser, changeUsername as dbChangeUsername } from '../../db/index.js';
 import { validateCode } from '../../utils/validateCode.js';
 import { changeUsernameSchema } from '../../validation/changeUsernameSchema.js';
 import jwt from 'jsonwebtoken';
@@ -14,13 +14,13 @@ export async function changeUsername(req, res) {
                 error: 'New username cannot be the same as the old username.',
             });
         }
-        if (await db.findUser(new_username)) {
+        if (await findUser(new_username)) {
             return res.status(409).json({ error: 'Username already exists.' });
         }
         if (!(await validateCode(req, email))) {
             return res.status(401).json({ error: 'Invalid code or expired.' });
         }
-        await db.changeUsername(old_username, new_username);
+        await dbChangeUsername(old_username, new_username);
         return res
             .status(200)
             .json({ message: 'Username changed successfully.' });
