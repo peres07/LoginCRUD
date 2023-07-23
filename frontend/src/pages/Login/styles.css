@@ -1,24 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
 
 .register-label {
-    color: white;
-    transition: 0.1s;
+  color: white;
+  transition: 0.1s;
 }
 
 .register-label:hover {
-    color: #b3b5b6;
+  color: #b3b5b6;
 }
 
 .or {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 .or .lines {
-    background-color: grey;
-    height: 1px;
-    width: 100px;
+  background-color: grey;
+  height: 1px;
+  width: 100px;
 }

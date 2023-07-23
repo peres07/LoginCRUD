@@ -1,40 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
 
 .register-div {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .login-label {
-    color: white;
-    transition: 0.1s;
+  color: white;
+  transition: 0.1s;
 }
 
 .login-label:hover {
-    color: rgb(179, 181, 182);
+  color: rgb(179, 181, 182);
 }
 
 .or {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 .or .lines {
-    background-color: grey;
-    height: 1px;
-    width: 100px;
+  background-color: grey;
+  height: 1px;
+  width: 100px;
 }
 
 @media (max-width: 1160px) {
-    main {
-        background-color: transparent;
-        box-shadow: none;
-    }
+  main {
+    background-color: transparent;
+    box-shadow: none;
+  }
 
-    .inputs .submit {
-        font-size: 15px;
-    }
+  .inputs .submit {
+    font-size: 15px;
+  }
 }

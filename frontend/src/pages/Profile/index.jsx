@@ -10,50 +10,47 @@ import { DeleteAccountModal } from './components/deleteAccountModal/deleteAccoun
 import { SettingsModal } from './components/settingsModal/settingsModal';
 
 export const Profile = () => {
-    const { user, logout } = useContext(AuthContext);
-    const [data, setData] = useState(null);
-    const [showDelete, setShowDelete] = useState(false);
-    const [showSettings, setShowSettings] = useState(false);
+  const { user, logout } = useContext(AuthContext);
+  const [data, setData] = useState(null);
+  const [showDelete, setShowDelete] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
 
-    const handleShowDeleteAccount = () => setShowDelete(true);
-    const handleCloseDeleteAccount = () => setShowDelete(false);
+  const handleShowDeleteAccount = () => setShowDelete(true);
+  const handleCloseDeleteAccount = () => setShowDelete(false);
 
-    const handleShowSettings = () => setShowSettings(true);
-    const handleCloseSettings = () => setShowSettings(false);
+  const handleShowSettings = () => setShowSettings(true);
+  const handleCloseSettings = () => setShowSettings(false);
 
-    useEffect(() => {
-        document.title = 'Profile';
-        try {
-            const data = jwt_decode(user);
+  useEffect(() => {
+    document.title = 'Profile';
+    try {
+      const data = jwt_decode(user);
 
-            if (!validateToken(user)) return logout();
-            setData(data);
-        } catch (err) {
-            logout();
-        }
-    }, [user, logout]);
-
-    if (!data) {
-        return <></>;
+      if (!validateToken(user)) return logout();
+      setData(data);
+    } catch (err) {
+      logout();
     }
+  }, [user, logout]);
 
-    return (
-        <Container>
-            <Row>
-                <Main
-                    data={data}
-                    handleShowDeleteAccount={handleShowDeleteAccount}
-                    handleShowSettings={handleShowSettings}
-                />
-                <DeleteAccountModal
-                    showDelete={showDelete}
-                    handleCloseDeleteAccount={handleCloseDeleteAccount}
-                />
-                <SettingsModal
-                    showSettings={showSettings}
-                    handleCloseSettings={handleCloseSettings}
-                />
-            </Row>
-        </Container>
-    );
+  if (!data) {
+    return <></>;
+  }
+
+  return (
+    <Container>
+      <Row>
+        <Main
+          data={data}
+          handleShowDeleteAccount={handleShowDeleteAccount}
+          handleShowSettings={handleShowSettings}
+        />
+        <DeleteAccountModal
+          showDelete={showDelete}
+          handleCloseDeleteAccount={handleCloseDeleteAccount}
+        />
+        <SettingsModal showSettings={showSettings} handleCloseSettings={handleCloseSettings} />
+      </Row>
+    </Container>
+  );
 };

@@ -7,6 +7,7 @@ export async function login(req, res) {
     const [email, password] = Buffer.from(hash, 'base64').toString().split(':');
     const user = await findEmail(email);
     console.log(user);
+    
     if (decryptPassword(password, user.password)) {
         const token = jsonwebtoken.sign(
             {
