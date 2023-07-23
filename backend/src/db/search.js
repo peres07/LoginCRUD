@@ -11,7 +11,7 @@ export async function findUser(username) {
 export async function findEmail(email) {
     const res = await query('SELECT * FROM users WHERE email = $1', [email]);
     if (!res.rows[0]) return false;
-    return true;
+    return res.rows[0];
 }
 
 export async function findCode(email) {

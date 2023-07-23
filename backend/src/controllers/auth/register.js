@@ -1,20 +1,22 @@
 import { registerSchema } from '../../validation/registerSchema.js';
-import * as db from '../../db/index.js';
+import { findEmail, findUser, register as dbRegister } from '../../db/index.js';
 import { validateCode } from '../../utils/validateCode.js';
+import { encryptPassword } from '../../utils/encryptPassword.js';
 
 export async function register(req, res) {
     try {
         const { username, email, password } = req.body;
+        const hash = encryptPassword(password);
         await registerSchema.validateAsync(req.body);
-        if (await db.findEmail(email)) {
+        if (await findEmail(email)) {
             return res.status(409).json({ error: 'Email already exists.' });
-        } else if (await db.findUser(username)) {
+        } else if (await findUser(username)) {
             return res.status(409).json({ error: 'Username already exists.' });
         }
         if (!(await validateCode(req, email))) {
             return res.status(401).json({ error: 'Invalid code or expired.' });
         }
-        await db.register(username, email, password);
+        await dbRegister(username, email, hash);
         return res.status(200).json({ message: 'User created successfully.' });
     } catch (err) {
         console.log(err);

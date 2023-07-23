@@ -1,3 +1,6 @@
 */node_modules
 */*.env
 .vscode
+.dockerignore
+Dockerfile
+fly.toml
