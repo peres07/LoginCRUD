@@ -13,6 +13,7 @@ Você pode acessar a página clicando [aqui](https://login-crud-frontend.vercel.
 - Axios: cliente HTTP baseado em promessas para fazer requisições
 - Bootstrap: framework CSS para facilitar o desenvolvimento de componentes responsivos
 - Jsonwebtoken: biblioteca para gerar e verificar tokens de autenticação
+- Bcrypt: ferramenta utilizada para criptografar as senhas no banco de dados
 
 ## Roadmap
 
