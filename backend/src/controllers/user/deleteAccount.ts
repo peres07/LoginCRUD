@@ -1,11 +1,16 @@
 import jwt from 'jsonwebtoken';
-import { deleteAccount as dbDeleteAccount} from '../../db/index.js';
-import { validateCode } from '../../utils/validateCode.js';
+import { Request, Response } from 'express';
 
-export async function deleteAccount(req, res) {
+import { deleteAccount as dbDeleteAccount } from '../../db/index.js';
+import { validateCode } from '../../utils/validateCode.js';
+import { JwtPayload } from '../../types/auth/JwtPayload.js';
+
+export async function deleteAccount(req: Request, res: Response) {
     try {
+        if (!req.headers.authorization)
+            return res.status(401).json({ error: 'No token provided.' });
         const token = req.headers.authorization.split(' ')[1];
-        const { email } = jwt.decode(token);
+        const { email } = jwt.decode(token) as JwtPayload;
         if (!(await validateCode(req, email))) {
             return res.status(401).json({ error: 'Invalid code.' });
         }

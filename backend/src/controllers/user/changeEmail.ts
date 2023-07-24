@@ -1,14 +1,20 @@
+import jwt from 'jsonwebtoken';
+import { Request, Response } from 'express';
+
 import { findEmail, changeEmail as dbChangeEmail } from '../../db/index.js';
 import { validateCode } from '../../utils/validateCode.js';
 import { changeEmailSchema } from '../../validation/changeEmailSchema.js';
-import jwt from 'jsonwebtoken';
+import { ChangeEmailBody } from '../../types/user/RequestBody';
+import { JwtPayload } from '../../types/auth/JwtPayload';
 
-export async function changeEmail(req, res) {
+export async function changeEmail(req: Request, res: Response) {
     try {
+        if (!req.headers.authorization)
+            return res.status(401).json({ error: 'No token provided.' });
         const token = req.headers.authorization.split(' ')[1];
-        const old_email = jwt.decode(token).email;
+        const { email: old_email } = jwt.decode(token) as JwtPayload;
         await changeEmailSchema.validateAsync(req.body);
-        const { new_email } = req.body;
+        const { new_email } = req.body as ChangeEmailBody;
         if (old_email === new_email) {
             return res.status(409).json({
                 error: 'New email cannot be the same as the old email.',

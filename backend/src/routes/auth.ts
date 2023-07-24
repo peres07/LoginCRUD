@@ -1,4 +1,5 @@
 import express from 'express';
+
 import * as authController from '../controllers/auth/index.js';
 import { validateToken } from '../middleware/validateToken.js';
 

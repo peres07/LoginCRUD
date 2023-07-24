@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
+import * as dotenv from 'dotenv';
 import bodyParser from 'body-parser';
-import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/user.js';
 import { validateToken } from './middleware/validateToken.js';

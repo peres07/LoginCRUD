@@ -1,11 +1,14 @@
+import { Request, Response } from 'express';
+
 import { registerSchema } from '../../validation/registerSchema.js';
 import { findEmail, findUser, register as dbRegister } from '../../db/index.js';
 import { validateCode } from '../../utils/validateCode.js';
 import { encryptPassword } from '../../utils/encryptPassword.js';
+import { RegisterBody } from '../../types/user/RequestBody.js';
 
-export async function register(req, res) {
+export async function register(req: Request, res: Response) {
     try {
-        const { username, email, password } = req.body;
+        const { username, email, password } = req.body as RegisterBody;
         const hash = encryptPassword(password);
         await registerSchema.validateAsync(req.body);
         if (await findEmail(email)) {

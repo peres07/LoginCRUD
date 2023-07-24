@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-export async function query(query, values) {
+export async function query(query: string, values: Array<string | number | Date>) {
     const client = new pg.Client(process.env.CONNECTION_STRING);
     await client.connect();
     const res = await client.query(query, values);
