@@ -5,7 +5,7 @@ import { changePassword as dbChangePassword } from '../../db/index.js';
 import { encryptPassword } from '../../utils/encryptPassword.js';
 import { validateCode } from '../../utils/validateCode.js';
 import { changePasswordSchema } from '../../validation/changePasswordSchema.js';
-import { ChangePasswordBody } from '../../types/user/RequestBody';
+import { RequestBody } from '../../types/user/RequestBody';
 import { JwtPayload } from '../../types/auth/JwtPayload';
 
 export async function changePassword(req: Request, res: Response) {
@@ -15,7 +15,7 @@ export async function changePassword(req: Request, res: Response) {
         const token = req.headers.authorization.split(' ')[1];
         const { username, email } = jwt.decode(token) as JwtPayload;
         await changePasswordSchema.validateAsync(req.body);
-        const { new_password } = req.body as ChangePasswordBody;
+        const { new_password } = req.body as RequestBody;
         const hash = encryptPassword(new_password);
         if (!(await validateCode(req, email))) {
             return res.status(401).json({ error: 'Invalid code or expired.' });

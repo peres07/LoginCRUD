@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 import { findUser, changeUsername as dbChangeUsername } from '../../db/index.js';
 import { validateCode } from '../../utils/validateCode.js';
 import { changeUsernameSchema } from '../../validation/changeUsernameSchema.js';
-import { ChangeUsernameBody } from '../../types/user/RequestBody';
+import { RequestBody } from '../../types/user/RequestBody';
 import { JwtPayload } from '../../types/auth/JwtPayload';
 
 export async function changeUsername(req: Request, res: Response) {
@@ -14,7 +14,7 @@ export async function changeUsername(req: Request, res: Response) {
         const token = req.headers.authorization.split(' ')[1];
         const { username: old_username, email } = jwt.decode(token) as JwtPayload;
         await changeUsernameSchema.validateAsync(req.body);
-        const { new_username } = req.body as ChangeUsernameBody;
+        const { new_username } = req.body as RequestBody;
         if (old_username === new_username) {
             return res.status(409).json({
                 error: 'New username cannot be the same as the old username.',

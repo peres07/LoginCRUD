@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 import { findEmail, changeEmail as dbChangeEmail } from '../../db/index.js';
 import { validateCode } from '../../utils/validateCode.js';
 import { changeEmailSchema } from '../../validation/changeEmailSchema.js';
-import { ChangeEmailBody } from '../../types/user/RequestBody';
+import { RequestBody } from '../../types/user/RequestBody';
 import { JwtPayload } from '../../types/auth/JwtPayload';
 
 export async function changeEmail(req: Request, res: Response) {
@@ -14,7 +14,7 @@ export async function changeEmail(req: Request, res: Response) {
         const token = req.headers.authorization.split(' ')[1];
         const { email: old_email } = jwt.decode(token) as JwtPayload;
         await changeEmailSchema.validateAsync(req.body);
-        const { new_email } = req.body as ChangeEmailBody;
+        const { new_email } = req.body as RequestBody;
         if (old_email === new_email) {
             return res.status(409).json({
                 error: 'New email cannot be the same as the old email.',

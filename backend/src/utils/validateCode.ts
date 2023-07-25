@@ -2,12 +2,12 @@ import { Request } from 'express';
 
 import { findCode, deleteCode } from '../db/index.js';
 import { validateCodeSchema } from '../validation/validateCodeSchema.js';
-import { CodeBody } from '../types/user/RequestBody.js';
+import { RequestBody } from '../types/user/RequestBody.js';
 
 export async function validateCode(req: Request, email: string) {
     try {
         await validateCodeSchema.validateAsync(req.body);
-        const { code: received_code } = req.body as CodeBody;
+        const { code: received_code } = req.body as RequestBody;
         const result = await findCode(email);
         if (!result) {
             return false;
