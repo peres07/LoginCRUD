@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
 
-import { findEmail } from '../db/index.js';
-import { decryptPassword } from '../utils/decryptPassword.js';
-import { validatePasswordSchema } from '../validation/validatePasswordSchema.js';
-import { JwtPayload } from '../types/auth/JwtPayload.js';
+import { findEmail } from '../db/index';
+import { decryptPassword } from '../utils/decryptPassword';
+import { validatePasswordSchema } from '../validation/validatePasswordSchema';
+import { JwtPayload } from '../types/auth/JwtPayload';
 
 export async function validatePassword(req: Request, res: Response, next: NextFunction) {
     try {

@@ -1,6 +1,6 @@
-import { query } from './utils/query.js';
+import { query } from './utils/query';
 import { User } from '../types/user/User';
-import { Code } from '../types/user/Code.js';
+import { Code } from '../types/user/Code';
 
 export async function findUser(username: string): Promise<boolean> {
     const res = await query('SELECT * FROM users WHERE username = $1', [username]);

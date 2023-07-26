@@ -1,3 +1,3 @@
-export * from './auth.js';
-export * from './user.js';
-export * from './search.js';
+export * from './auth';
+export * from './user';
+export * from './search';

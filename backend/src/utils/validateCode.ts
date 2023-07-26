@@ -1,8 +1,8 @@
 import { Request } from 'express';
 
-import { findCode, deleteCode } from '../db/index.js';
-import { validateCodeSchema } from '../validation/validateCodeSchema.js';
-import { RequestBody } from '../types/user/RequestBody.js';
+import { findCode, deleteCode } from '../db/index';
+import { validateCodeSchema } from '../validation/validateCodeSchema';
+import { RequestBody } from '../types/user/RequestBody';
 
 export async function validateCode(req: Request, email: string) {
     try {

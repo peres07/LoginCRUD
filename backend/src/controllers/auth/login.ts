@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import jsonwebtoken from 'jsonwebtoken';
 
-import { findEmail } from '../../db/index.js';
-import { decryptPassword } from '../../utils/decryptPassword.js';
+import { findEmail } from '../../db/index';
+import { decryptPassword } from '../../utils/decryptPassword';
 
 export async function login(req: Request, res: Response) {
     if (!req.headers.authorization) return res.status(401).json({ error: 'No credentials sent.' });
