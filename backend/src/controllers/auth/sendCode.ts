@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response } from 'express';
 
-import { generateCode } from '../../utils/generateCode';
-import { sendEmail } from '../../utils/sendEmail';
-import { sendCodeSchema } from '../../validation/sendCodeSchama';
-import { JwtPayload } from '../../types/auth/JwtPayload';
+import { generateCode } from '../../utils/generateCode.js';
+import { sendEmail } from '../../utils/sendEmail.js';
+import { sendCodeSchema } from '../../validation/sendCodeSchama.js';
+import { JwtPayload } from '../../types/auth/JwtPayload.js';
 
 export async function sendCode(req: Request, res: Response) {
     try {

@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response } from 'express';
 
-import { changePassword as dbChangePassword } from '../../db/index';
-import { encryptPassword } from '../../utils/encryptPassword';
-import { validateCode } from '../../utils/validateCode';
-import { changePasswordSchema } from '../../validation/changePasswordSchema';
+import { changePassword as dbChangePassword } from '../../db/index.js';
+import { encryptPassword } from '../../utils/encryptPassword.js';
+import { validateCode } from '../../utils/validateCode.js';
+import { changePasswordSchema } from '../../validation/changePasswordSchema.js';
 import { RequestBody } from '../../types/user/RequestBody';
 import { JwtPayload } from '../../types/auth/JwtPayload';
 

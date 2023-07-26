@@ -1,4 +1,4 @@
-import { query } from './utils/query';
+import { query } from './utils/query.js';
 
 export async function register(
     username: string,

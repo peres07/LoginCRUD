@@ -1,4 +1,4 @@
-import { findCode, deleteCode, saveCode } from '../db/index';
+import { findCode, deleteCode, saveCode } from '../db/index.js';
 
 export async function generateCode(email: string) {
     const length = 6;

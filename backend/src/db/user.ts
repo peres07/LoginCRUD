@@ -1,4 +1,4 @@
-import { query } from './utils/query';
+import { query } from './utils/query.js';
 
 export async function deleteAccount(email: string): Promise<boolean> {
     try {

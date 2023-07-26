@@ -1,9 +1,9 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response } from 'express';
 
-import { deleteAccount as dbDeleteAccount } from '../../db/index';
-import { validateCode } from '../../utils/validateCode';
-import { JwtPayload } from '../../types/auth/JwtPayload';
+import { deleteAccount as dbDeleteAccount } from '../../db/index.js';
+import { validateCode } from '../../utils/validateCode.js';
+import { JwtPayload } from '../../types/auth/JwtPayload.js';
 
 export async function deleteAccount(req: Request, res: Response) {
     try {

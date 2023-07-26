@@ -2,10 +2,10 @@ import express from 'express';
 import cors from 'cors';
 import * as dotenv from 'dotenv';
 import bodyParser from 'body-parser';
-import authRoutes from './routes/auth';
-import userRoutes from './routes/user';
-import { validateToken } from './middleware/validateToken';
-import { validatePassword } from './middleware/validatePassword';
+import authRoutes from './routes/auth.js';
+import userRoutes from './routes/user.js';
+import { validateToken } from './middleware/validateToken.js';
+import { validatePassword } from './middleware/validatePassword.js';
 
 dotenv.config();
 

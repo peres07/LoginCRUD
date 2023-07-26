@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 
-import { registerSchema } from '../../validation/registerSchema';
-import { findEmail, findUser, register as dbRegister } from '../../db/index';
-import { validateCode } from '../../utils/validateCode';
-import { encryptPassword } from '../../utils/encryptPassword';
-import { RequestBody } from '../../types/user/RequestBody';
+import { registerSchema } from '../../validation/registerSchema.js';
+import { findEmail, findUser, register as dbRegister } from '../../db/index.js';
+import { validateCode } from '../../utils/validateCode.js';
+import { encryptPassword } from '../../utils/encryptPassword.js';
+import { RequestBody } from '../../types/user/RequestBody.js';
 
 export async function register(req: Request, res: Response) {
     try {

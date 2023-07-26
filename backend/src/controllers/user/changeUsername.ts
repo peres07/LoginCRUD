@@ -1,9 +1,9 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response } from 'express';
 
-import { findUser, changeUsername as dbChangeUsername } from '../../db/index';
-import { validateCode } from '../../utils/validateCode';
-import { changeUsernameSchema } from '../../validation/changeUsernameSchema';
+import { findUser, changeUsername as dbChangeUsername } from '../../db/index.js';
+import { validateCode } from '../../utils/validateCode.js';
+import { changeUsernameSchema } from '../../validation/changeUsernameSchema.js';
 import { RequestBody } from '../../types/user/RequestBody';
 import { JwtPayload } from '../../types/auth/JwtPayload';
 

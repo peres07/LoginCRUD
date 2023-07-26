@@ -1,9 +1,9 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response } from 'express';
 
-import { findEmail, changeEmail as dbChangeEmail } from '../../db/index';
-import { validateCode } from '../../utils/validateCode';
-import { changeEmailSchema } from '../../validation/changeEmailSchema';
+import { findEmail, changeEmail as dbChangeEmail } from '../../db/index.js';
+import { validateCode } from '../../utils/validateCode.js';
+import { changeEmailSchema } from '../../validation/changeEmailSchema.js';
 import { RequestBody } from '../../types/user/RequestBody';
 import { JwtPayload } from '../../types/auth/JwtPayload';
 

@@ -1,3 +1,3 @@
-export { login } from './login';
-export { register } from './register';
-export { sendCode } from './sendCode';
+export { login } from './login.js';
+export { register } from './register.js';
+export { sendCode } from './sendCode.js';
